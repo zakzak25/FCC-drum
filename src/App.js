@@ -1,38 +1,80 @@
 import React, { useState } from 'react';
+import Drum from './Drum';
 
-
+const audioClips = [
+  {
+    keyTrigger: "Q",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
+    description: "Heater 1"
+  },
+  {
+    keyTrigger: "W",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
+    description: "Heater 2"
+  },
+  {
+    keyTrigger: "E",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
+    description: "Heater 3"
+  },
+  {
+    keyTrigger: "A",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
+    description: "Heater 4"
+  },
+  {
+    keyTrigger: "S",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
+    description: "Heater 5"
+  },
+  {
+    keyTrigger: "D",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
+    description: "Heater 6"
+  },
+  {
+    keyTrigger: "Z",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
+    description: "Kick n' Hat"
+  },
+  {
+    keyTrigger: "X",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
+    description: "Kick"
+  },
+  {
+    keyTrigger: "C",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
+    description: "Cev H2"
+  }
+]
 
 const App = () => {
+  const [heather, setHeather] = useState('Drum Press');
 
-  const [rengeVolum , setRendeVolume] = useState(0)
+  const changeHeater = (newHeather) => {
+    setHeather(newHeather);
+  };
 
-  return(
+  return (
     <div id="drum-machine">
-      <div className="butoons-div">
-        <div>
-            <div className="drum-pad" id="Q">Q</div>
-            <div className="drum-pad" id="W">W</div>
-            <div className="drum-pad" id="E">E</div>
-        </div>
-        <div>
-            <div className="drum-pad" id="A">A</div>
-            <div className="drum-pad" id="S">S</div>
-            <div className="drum-pad" id="D">D</div>
-        </div>
-        <div>
-            <div className="drum-pad" id="Z">Z</div>
-            <div className="drum-pad" id="X">X</div>
-            <div className="drum-pad" id="C">C</div>
-        </div>
+      <h1>FCC: Drum Machine</h1>
+      <div className="whole-drum">
+        {audioClips.map((clip, index) => (
+          <Drum 
+            key={index} 
+            keyTrigger={clip.keyTrigger} 
+            url={clip.url} 
+            description={clip.description} 
+            heatherchanger={changeHeater}
+          />
+        ))}
       </div>
-      <div id="dispaly">
-        <div className="turn-div"></div>
-        <div className="result"></div>
-        <input type='range' max={1} min={0} step={0.01} value={rengeVolum} />
+      <div id="display" style={{fontSize: '26px',textAlign: 'center', color: 'gray'}}>
+        {heather}
       </div>
     </div>
   )
 }
-
 
 export default App;
