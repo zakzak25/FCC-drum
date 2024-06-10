@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Drum from './Drum';
+// import DrumTest from './DrumTest';
+
 
 const audioClips = [
   {
@@ -73,6 +75,16 @@ const App = () => {
       <div id="display" style={{fontSize: '26px',textAlign: 'center', color: 'gray'}}>
         {heather}
       </div>
+      {/* <div className='whole-drum'>
+      {audioClips.map((clip , index) => (
+        <DrumTest 
+          key={index}
+          keyTrigger={clip.keyTrigger}
+          url={clip.url}
+          description={clip.description}
+        />
+      ))}
+      </div> */}
     </div>
   )
 }

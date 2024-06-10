@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Drum = (props) => {
     const audioRef = useRef(null);
@@ -6,6 +6,18 @@ const Drum = (props) => {
     const playSound = () => {
         audioRef.current.play();
     };
+
+    //sound by click
+    const keyClickHandler = (event) => {
+        if (event.key.toUpperCase() === props.keyTrigger) {
+            playSound();
+            props.heatherchanger(props.description);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown' , keyClickHandler)
+    }, [])
 
     const handleClick = () => {
         playSound();
